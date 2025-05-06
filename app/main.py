@@ -1,47 +1,48 @@
-from fastapi import FastAPI, Form
+from urllib import request
+
+from fastapi import FastAPI, Response, Request
 from fastapi.responses import FileResponse, RedirectResponse
-from .models import User, Feedback, UserCreate
+from .models import User, UserLogin
+import random
 
 app = FastAPI()
 
 # запуск uvicorn app.main:app --reload --port 1111
+users = [
+    {
+        "login": "andy",
+        "password": "1234",
+        "session_token": None
+    },
+    {
+        "login": "dandy",
+        "password": "2222",
+        "session_token": None
+    }
+]
 
-class UserOutput(User):
-    is_adult: bool = False
-
-feedbacks = []
-bad_words = ["залупа", "пенис", "хер"]
 
 @app.get("/")
 def read_root():
     return RedirectResponse(url="/docs", status_code=301)
 
-@app.post("/calculate")
-def calculate(num1: int = Form(), num2: int = Form()):
-    return {"result": num1 + num2}
+@app.post("/login")
+async def login(user: UserLogin, response: Response):
+    for u in users:
+        if u["login"] == user.login and u["password"] == user.password:
+            token = str(random.randint(100, 999))
+            u["session_token"] = token
+            response.set_cookie(key="session_token", value=token)
+            return {"message": "Normaly"}
+        return {"message": "Wrong credentials"}
 
-@app.get("/calculate", response_class=FileResponse)
-def calc_form():
-    return "app/public/calculate.html"
+@app.get("/user")
+async def user(request: Request):
+    session_token = request.cookies.get("session_token")
+    for u in users:
+        if u["session_token"] == session_token and session_token is not None:
+            return  {"session_token": session_token}
 
-@app.post("/user", response_model=UserOutput)
-def get_user(user: UserOutput = UserOutput(name="andy", age=24)):
-    if user.age >= 18:
-        user.is_adult = True
-    return user
 
-@app.post("/feedback")
-def get_feedback(feedback: Feedback):
-    for word in feedback.message.split():
-        if word in bad_words:
-            raise ValueError(f"'{word}' - плохое слово")
-    feedbacks.append(feedback)
-    return {"message": f"Спасибо, {feedback.name}! Ваш отзыв сохранён."}
 
-@app.get("/comments")
-def get_comments():
-    return feedbacks
 
-@app.post("/create_user")
-def create_user(user: UserCreate):
-    return user
