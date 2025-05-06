@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import FileResponse, RedirectResponse
-from .models import User, Feedback
+from .models import User, Feedback, UserCreate
 
 app = FastAPI()
 
@@ -41,3 +41,7 @@ def get_feedback(feedback: Feedback):
 @app.get("/comments")
 def get_comments():
     return feedbacks
+
+@app.post("/create_user")
+def create_user(user: UserCreate):
+    return user
