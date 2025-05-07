@@ -1,44 +1,38 @@
-from fastapi import FastAPI, Response, Request
-from fastapi.responses import FileResponse, RedirectResponse
-from .models import User, UserLogin
-import jwt
+from fastapi import FastAPI, Depends, HTTPException, status
+from .security import create_jwt_token
+from .models import UserLogin, User
+from .db import USERS_DATA
+from .dependencies import get_current_user
+from .rbac import PermissionChecker
+
 app = FastAPI()
 
-# запуск uvicorn app.main:app --reload --port 1111
-users = [
-    {
-        "login": "andy",
-        "password": "1234",
-        "session_token": None
-    },
-    {
-        "login": "dandy",
-        "password": "2222",
-        "session_token": None
-    }
-]
-
-
-@app.get("/")
-def read_root():
-    return RedirectResponse(url="/docs", status_code=301)
-
 @app.post("/login")
-async def login(user: UserLogin, response: Response):
-    for u in users:
-        if u["login"] == user.login and u["password"] == user.password:
-            encoded_jwt = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
-            u["session_token"] = jwt.decode(encoded_jwt, "secret", algorithms=["HS256"])
-            response.set_cookie(key="session_token", value=jwt.decode(encoded_jwt, "secret", algorithms=["HS256"]))
-            return {"message": "Normaly", "token": encoded_jwt}
-        return {"message": "Wrong credentials"}
+async def login(user_in: UserLogin):
+    """Маршрут для аутентификации"""
+    for user in USERS_DATA:
+        if user["username"] == user_in.username and user["password"] == user_in.password:
+            # Генерируем JWT-токен для пользователя
+            token = create_jwt_token({"sub": user_in.username})
+            return {"access_token": token, "token_type": "bearer"}
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Неверные учетные данные")
+
+@app.get("/admin")
+@PermissionChecker(["admin"])
+async def admin_info(current_user: User = Depends(get_current_user)):
+    """Маршрут для администраторов"""
+    return {"message": f"Hello, {current_user.username}! Welcome to the admin page."}
 
 @app.get("/user")
-async def user(request: Request):
-    session_token = request.cookies.get("session_token")
-    for u in users:
-        if u["session_token"] == session_token and session_token is not None:
-            return  user
+@PermissionChecker(["user"])
+async def user_info(current_user: User = Depends(get_current_user)):
+    """Маршрут для пользователей"""
+    return {"message": f"Hello, {current_user.username}! Welcome to the user page."}
+
+@app.get("/about_me")
+async def about_me(current_user: User = Depends(get_current_user)):
+    """Информация о текущем пользователе"""
+    return current_user
 
 
 
