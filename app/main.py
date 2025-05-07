@@ -1,10 +1,7 @@
-from urllib import request
-
 from fastapi import FastAPI, Response, Request
 from fastapi.responses import FileResponse, RedirectResponse
 from .models import User, UserLogin
-import random
-
+import jwt
 app = FastAPI()
 
 # запуск uvicorn app.main:app --reload --port 1111
@@ -30,10 +27,10 @@ def read_root():
 async def login(user: UserLogin, response: Response):
     for u in users:
         if u["login"] == user.login and u["password"] == user.password:
-            token = str(random.randint(100, 999))
-            u["session_token"] = token
-            response.set_cookie(key="session_token", value=token)
-            return {"message": "Normaly"}
+            encoded_jwt = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
+            u["session_token"] = jwt.decode(encoded_jwt, "secret", algorithms=["HS256"])
+            response.set_cookie(key="session_token", value=jwt.decode(encoded_jwt, "secret", algorithms=["HS256"]))
+            return {"message": "Normaly", "token": encoded_jwt}
         return {"message": "Wrong credentials"}
 
 @app.get("/user")
@@ -41,7 +38,7 @@ async def user(request: Request):
     session_token = request.cookies.get("session_token")
     for u in users:
         if u["session_token"] == session_token and session_token is not None:
-            return  {"session_token": session_token}
+            return  user
 
 
 
