@@ -34,6 +34,10 @@ async def about_me(current_user: User = Depends(get_current_user)):
     """Информация о текущем пользователе"""
     return current_user
 
+@app.get("/sum/")
+def calculate_sum(a: int, b: int):
+    return {"result": a + b}
+
 
 
 

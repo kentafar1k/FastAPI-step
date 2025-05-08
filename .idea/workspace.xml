@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb446b55-1c3d-489e-89ef-552887c1844b" name="Changes" comment="урок 2.3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bb446b55-1c3d-489e-89ef-552887c1844b" name="Changes" comment="роли с фейковой дб">
+      <change afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app_db/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app_db/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app_db/init_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app_db/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,32 +56,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;FastAPI.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/programming/FastAPI-step/app/main.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "FastAPI.Unnamed.executor": "Run",
+    "FastAPI.Приложение.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.питон.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/programming/FastAPI-step/app_db/main.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\programming\FastAPI-step\app" />
       <recent name="E:\programming\FastAPI-step\public" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="Python.FastAPI" nameIsGenerated="true">
+  <component name="RunManager" selected="FastAPI.Приложение">
+    <configuration name="питон" type="PythonConfigurationType" factoryName="Python">
+      <module name="FastAPI-step" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (FastAPI-step)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testpy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Приложение" type="Python.FastAPI">
       <option name="additionalOptions" value="--reload --port 1111" />
-      <option name="file" value="E:\programming\FastAPI-step\app\main.py" />
+      <option name="file" value="E:\programming\FastAPI-step\app_db\main.py" />
       <module name="FastAPI-step" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,6 +122,10 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="FastAPI.Приложение" />
+      <item itemvalue="Python.питон" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -107,6 +147,7 @@
       <workItem from="1746014227195" duration="2623000" />
       <workItem from="1746021600483" duration="13365000" />
       <workItem from="1746272138379" duration="4637000" />
+      <workItem from="1746523153546" duration="15278000" />
     </task>
     <task id="LOCAL-00001" summary="настроил архитектуру">
       <option name="closed" value="true" />
@@ -140,7 +181,39 @@
       <option name="project" value="LOCAL" />
       <updated>1746275796494</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="урок 3.1">
+      <option name="closed" value="true" />
+      <created>1746524157195</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746524157195</updated>
+    </task>
+    <task id="LOCAL-00006" summary="урок 3.2">
+      <option name="closed" value="true" />
+      <created>1746536735541</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746536735541</updated>
+    </task>
+    <task id="LOCAL-00007" summary="как добавить JWT токен в фастапи">
+      <option name="closed" value="true" />
+      <created>1746602858697</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746602858697</updated>
+    </task>
+    <task id="LOCAL-00008" summary="роли с фейковой дб">
+      <option name="closed" value="true" />
+      <created>1746606304859</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746606304859</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,10 +223,15 @@
     <MESSAGE value="настроил архитектуру" />
     <MESSAGE value="добавил конфиг&#10;у" />
     <MESSAGE value="урок 2.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="урок 2.2" />
+    <MESSAGE value="урок 3.1" />
+    <MESSAGE value="урок 3.2" />
+    <MESSAGE value="как добавить JWT токен в фастапи" />
+    <MESSAGE value="роли с фейковой дб" />
+    <option name="LAST_COMMIT_MESSAGE" value="роли с фейковой дб" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FastAPI_step$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1746275656479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/FastAPI_step$Unnamed.coverage" NAME="Приложение Coverage Results" MODIFIED="1746614341586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/FastAPI_step$main.coverage" NAME="main Coverage Results" MODIFIED="1746014210181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FastAPI_step$.coverage" NAME="питон Coverage Results" MODIFIED="1746524946627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
